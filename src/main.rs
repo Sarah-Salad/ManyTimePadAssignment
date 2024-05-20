@@ -17,10 +17,15 @@ fn main() {
 
     let binary_vec: Vec<String> = hex_strings.into_iter().map(|x| BinaryString::from_hex(x).unwrap().to_string()).collect();
 
+    println!("{:?}",xor_binary_strings(binary_vec[0].as_str(), binary_vec[1].as_str()));
 
 }
 
 fn xor_binary_strings(bin_str1: &str, bin_str2: &str) -> String {
+    println!("{}", bin_str1);
+    println!("\n");
+    println!("{}", bin_str2);
+    println!("\n");
     bin_str1.chars()
         .zip(bin_str2.chars())
         .map(|(b1, b2)| {
