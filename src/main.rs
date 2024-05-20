@@ -17,3 +17,16 @@ fn main() {
     let binary_vec: Vec<String> = hex_strings.into_iter().map(|x| BinaryString::from_hex(x).unwrap()).collect();
 
 }
+
+fn xor_binary_strings(bin_str1: &str, bin_str2: &str) -> String {
+    bin_str1.chars()
+        .zip(bin_str2.chars())
+        .map(|(b1, b2)| {
+            if b1 == b2 {
+                '0'
+            } else {
+                '1'
+            }
+        })
+        .collect()
+}
