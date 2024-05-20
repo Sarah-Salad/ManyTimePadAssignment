@@ -24,7 +24,7 @@ fn main() {
 fn xor_binary_strings(bin_str1: &str, bin_str2: &str) -> String {
     println!("{}", bin_str1);
     println!("\n");
-    println!("{}", bin_str2);
+    println!("{}", &bin_str2[..bin_str1.len()]);
     println!("\n");
     bin_str1.chars()
         .zip(bin_str2.chars())
@@ -37,8 +37,6 @@ fn xor_binary_strings(bin_str1: &str, bin_str2: &str) -> String {
         })
         .collect()
 }
-
-
 
 fn generate_bit_strings(n: usize) -> Vec<String> {
     let mut result = Vec::new();
