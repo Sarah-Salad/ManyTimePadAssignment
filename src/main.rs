@@ -15,8 +15,48 @@ fn main() {
 "00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
     ];
 
-    let binary_vec: Vec<String> = hex_strings.into_iter().map(|x| BinaryString::from_hex(x).unwrap().to_string()).collect();
+    // let binary_vec: Vec<String> = hex_strings.into_iter().map(|x| BinaryString::from_hex(x).unwrap().to_string()).collect();
 
+    let equal_len_hex = vec![
+        "160111433b00035f53611043",
+        "050602061d07035f4e355350",
+        "000000000000001a49320017",
+        "0b07540c1d0d0b4800354f50",
+        "031a5410000a075f54380012",
+        "0b4916060808001a542e0002",
+        "011b0d131b060d4f5233451e",
+        "0c06004316061b48002a4509",
+        "011101000110100001100101",
+    ];
+
+    let binary_vec: Vec<String> = equal_len_hex.into_iter().map(|x| BinaryString::from_hex(x).unwrap().to_string()).collect();
+    // crib dragging
+    let crib_binary = "011101000110100001100101"; // the
+    let mut xor_original: Vec<String> = Vec::new();
+    // Get all the xors from the original strings.
+    for i in 0..8 {
+        let xor = xor_binary_strings(&binary_vec[i], &binary_vec[i+1]);
+        xor_original.push(xor.clone());
+    }
+    // Get all the xors from the crib dragged strings.
+    let mut xor_crib: Vec<String> = Vec::new();
+    for i in 0..8 {
+        let xor = xor_binary_strings(&binary_vec[i], &crib_binary);
+        xor_crib.push(xor.clone());
+    }
+    // change the string to ascii characters
+    let mut xor_crib_ascii: Vec<String> = Vec::new();
+    for i in 0..8 {
+        let xor = xor_crib[i].clone();
+        let mut xor_string = String::new();
+        for j in 0..xor.len()/8 {
+            let byte = &xor[j*8..(j+1)*8];
+            let byte_int = u8::from_str_radix(byte, 2).unwrap();
+            xor_string.push(byte_int as char);
+        }
+        xor_crib_ascii.push(xor_string);
+    }
+    print!("{:?}", xor_crib_ascii);
     println!("{:?}",xor_binary_strings(binary_vec[0].as_str(), binary_vec[1].as_str()));
 
 }
