@@ -1,6 +1,6 @@
 # Approach:
 
-* We try a brute force for approach on a  minimal subset of input  (n bits) to see if we can identify in the output some good outcome returning valid english words. 
+* We want to identify common patterns amount ciphertexts. 
 
 * We write a function to convert hex to bits
 
