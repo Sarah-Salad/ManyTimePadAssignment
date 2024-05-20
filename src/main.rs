@@ -32,3 +32,17 @@ fn xor_binary_strings(bin_str1: &str, bin_str2: &str) -> String {
         })
         .collect()
 }
+
+
+
+fn generate_bit_strings(n: usize) -> Vec<String> {
+    let mut result = Vec::new();
+    let max_value = 1 << n; // Equivalent to 2^n
+
+    for i in 0..max_value {
+        let bit_string = format!("{:0width$b}", i, width = n);
+        result.push(bit_string);
+    }
+
+    result
+}
