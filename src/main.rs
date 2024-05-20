@@ -22,6 +22,9 @@ fn main() {
 }
 
 fn xor_binary_strings(bin_str1: &str, bin_str2: &str) -> String {
+    let min_len = bin_str1.len().min(bin_str2.len());
+    let bin_str1 = &bin_str1[..min_len];
+    let bin_str2 = &bin_str2[..min_len];
     println!("{}", bin_str1);
     println!("\n");
     println!("{}", &bin_str2[..bin_str1.len()]);
